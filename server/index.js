@@ -56,6 +56,6 @@ http.createServer(function (request, response) {
   } catch (e) {
     console.log(e)
   }
-}).listen(blogConfig.port)
+}).listen(blogConfig.devPort)
 
-console.log(`Server running at http://localhost:${blogConfig.port}`)
+console.log(`Server running at http://localhost:${blogConfig.devPort}`)

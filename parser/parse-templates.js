@@ -1,7 +1,31 @@
 const fs = require('fs')
 const metaData = require('../parser/meta-data')
 const parser = require('../parser/parser')
-const blogConfig = JSON.parse(fs.readFileSync('blog.json', 'utf-8'))
+const blogConfig = require('../generator/blog-config')
+
+function _getLatestArticles(allPostsMetaData) {
+  if (!allPostsMetaData) return []
+  return _createHtmlLinks(allPostsMetaData.slice(0, 3))
+}
+
+function _getPopularArticles(allPostsMetaData) {
+  if (!allPostsMetaData) return []
+  const popular = allPostsMetaData.filter((a) => { return a.popular })
+  return _createHtmlLinks(popular)
+}
+
+function _createHtmlLinks(allPostsMetaData) {
+    const articleLinks = []
+    articleLinks.push('<ul>')
+
+    for (let i = 0; i < allPostsMetaData.length; i++) {
+      articleLinks.push(`\n<li><a href="${allPostsMetaData[i].url}">${allPostsMetaData[i].title}</a></li>`)
+    }
+
+    articleLinks.push('\n</ul>')
+
+    return articleLinks.join('')
+}
 
 function parseBlogPage (globalSiteTemplate, post, blogTemplate) {
   const template = this.parsePage(globalSiteTemplate, blogTemplate)
@@ -20,7 +44,7 @@ function parseBlogPage (globalSiteTemplate, post, blogTemplate) {
   return parsedHtml
 }
 
-function parsePage (indexHtmlTemplate, indexContent) {
+function parsePage (indexHtmlTemplate, indexContent, allPostsMetaData, publish) {
   const meta = metaData(indexContent.split('\n'))
 
   let parsedHtml = indexHtmlTemplate
@@ -29,28 +53,17 @@ function parsePage (indexHtmlTemplate, indexContent) {
     parsedHtml = parsedHtml.replaceAll(`{{${key}}}`, meta[key])
   }
 
-  parsedHtml = parsedHtml.replaceAll('{{url}}', blogConfig.devUrl)
-
+  parsedHtml = parsedHtml.replaceAll('{{newestArticles}}', _getLatestArticles(allPostsMetaData))
+  parsedHtml = parsedHtml.replaceAll('{{popularArticles}}', _getPopularArticles(allPostsMetaData))
+  parsedHtml = parsedHtml.replaceAll('{{url}}', blogConfig.getSiteUrl(publish))
+  
   return parsedHtml
 }
 
 function parseBlogIndex (globalSiteTemplate, blogIndexTemplate, allPostsMetaData) {
-  const articleLinks = []
+  const articleLinks = _createHtmlLinks(allPostsMetaData)
   let template = this.parsePage(globalSiteTemplate, blogIndexTemplate)
-
-  // sort the links by publish date
-  allPostsMetaData.sort((a, b) => b.unixDate - a.unixDate)
-
-  articleLinks.push('<ul>')
-
-  for (let i = 0; i < allPostsMetaData.length; i++) {
-    articleLinks.push(`\n<li><a href="${allPostsMetaData[i].url}">${allPostsMetaData[i].title}</a></li>`)
-  }
-
-  articleLinks.push('\n</ul>')
-
-  template = template.replaceAll('{{articles}}', articleLinks.join(''))
-
+  template = template.replaceAll('{{articles}}', articleLinks)
   return template
 }
 

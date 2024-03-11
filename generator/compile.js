@@ -2,15 +2,21 @@ const fs = require('fs')
 const path = require('path')
 const parseTemplates = require('../parser/parse-templates')
 const metaData = require('../parser/meta-data')
-const blogConfig = JSON.parse(fs.readFileSync('blog.json', 'utf-8'))
+const blogConfig = require('./blog-config')
 
 const BLOG_FOLDER = 'blog'
-const OUTPUT_FOLDER = '_output'
+const LOCAL_FOLDER = '_output'
+const PUBLISHED_FOLDER = '_published'
 const TEMPLATES_FOLDER = 'templates'
 const POSTS_FOLDER = 'posts'
 const IMAGES_FOLDER = 'images'
 
+const SIMPLEST_BLOG_EXTENSION = '.sb'
+
 const allPostsMetaData = []
+
+let OUTPUT_FOLDER = LOCAL_FOLDER
+let PUBLISH_MODE = 0
 
 function _buildBlogIndex (globalSiteTemplate) {
   const blogIndexHtml = path.resolve(OUTPUT_FOLDER, BLOG_FOLDER, 'index.html')
@@ -25,15 +31,18 @@ function _loadBlogPages () {
 
   for (let i = 0; i < allPosts.length; i++) {
     // ignore non .sb files
-    if (path.extname(allPosts[i]) !== '.sb') continue
+    if (path.extname(allPosts[i]) !== SIMPLEST_BLOG_EXTENSION) continue
 
     const postContent = fs.readFileSync(path.resolve(POSTS_FOLDER, allPosts[i]), 'utf8')
     const meta = metaData(postContent.split('\n'))
 
-    meta.url = `${blogConfig.devUrl}/${BLOG_FOLDER}/${allPosts[i].replace('.sb', '.html')}`
+    meta.url = `${blogConfig.getSiteUrl(PUBLISH_MODE)}/${BLOG_FOLDER}/${allPosts[i].replace(SIMPLEST_BLOG_EXTENSION, '.html')}`
 
     allPostsMetaData.push(meta)
   }
+
+  // sort the links by publish date
+  allPostsMetaData.sort((a, b) => b.unixDate - a.unixDate)
 }
 
 function _getTemplateFile (fileName) {
@@ -56,7 +65,7 @@ function _buildBlogPages (globalSiteTemplate) {
 function _buildPage (globalSiteTemplate, targetFile) {
   const indexContentHtml = fs.readFileSync(`${targetFile}.html`, 'utf8')
 
-  globalSiteTemplate = parseTemplates.parsePage(globalSiteTemplate, indexContentHtml)
+  globalSiteTemplate = parseTemplates.parsePage(globalSiteTemplate, indexContentHtml, allPostsMetaData, PUBLISH_MODE)
 
   fs.writeFileSync(`${OUTPUT_FOLDER}/${targetFile}.html`, globalSiteTemplate)
 }
@@ -82,13 +91,18 @@ function _copyFile (from, to) {
 function _doBuild () {
   const globalSiteTemplate = _getTemplateFile('index.html')
 
+  const args = process.argv
+  if (args[2] === 'publish') {
+    PUBLISH_MODE = 1
+    OUTPUT_FOLDER = PUBLISHED_FOLDER
+  }
+
   console.log('1. Re-generating output folder...')
   _deleteFolder(OUTPUT_FOLDER)
   _createFolder(OUTPUT_FOLDER)
   _createFolder(`${OUTPUT_FOLDER}/${BLOG_FOLDER}`)
   _createFolder(`${OUTPUT_FOLDER}/${IMAGES_FOLDER}`)
 
-  // TODO: make dynamic
   const images = fs.readdirSync(path.resolve(IMAGES_FOLDER))
 
   for (let i = 0; i < images.length; i++) {
@@ -96,12 +110,13 @@ function _doBuild () {
   }
 
   console.log('2. Building static pages...')
+  _loadBlogPages()
   _buildPage(globalSiteTemplate, 'index')
   _buildPage(globalSiteTemplate, '404')
+  _buildPage(globalSiteTemplate, 'about')
   _copyFile('style.css', `${OUTPUT_FOLDER}/style.css`)
 
   console.log('3. Generating blog entries...')
-  _loadBlogPages()
   _buildBlogPages(globalSiteTemplate)
   _buildBlogIndex(globalSiteTemplate)
 
