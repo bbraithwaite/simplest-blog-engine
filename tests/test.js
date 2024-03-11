@@ -1,12 +1,12 @@
 const parser = require('../lib/parse/parser')
-const metaDataRaw = '---\ndate: 2022-05-23\ntitle: GET2 Test Results\ntags: thoughts\n---\n\n'
+const metaDataRaw = '---\ndate: 2022-05-23\ntitle: Simplest Blog\n---\n\n'
 
 /**
- * getTree - Returns simplest blog markup in HTML format.
+ * parseMarkUp - Parses the simplest blog markup in HTML format.
  * @param {string} input - The simplest blog markup.
  * @returns {array} An array of the parsed lines from sb markup to HTML.
  */
-const getTree = (input) => {
+const parseMarkUp = (input) => {
   return () => { return parser(`${metaDataRaw}${input}`).tree }
 }
 
@@ -27,6 +27,6 @@ const that = (description, callback, expected) => {
 }
 
 module.exports = {
-  getTree,
+  parseMarkUp,
   that
 }

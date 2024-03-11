@@ -3,7 +3,7 @@ const testThat = test.that
 
 testThat(
   'single line paragraphs are parsed',
-  test.getTree('This is some text.'),
+  test.parseMarkUp('This is some text.'),
   [
     '<p>This is some text.</p>'
   ]
@@ -11,7 +11,7 @@ testThat(
 
 testThat(
   'multile line paragraphs are parsed',
-  test.getTree('This is some text.\n\nThis is some more text.'),
+  test.parseMarkUp('This is some text.\n\nThis is some more text.'),
   [
     '<p>This is some text.</p>',
     '<p>This is some more text.</p>'

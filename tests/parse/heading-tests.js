@@ -6,7 +6,7 @@ const maxHeadings = 6
 for (let i = 1; i <= maxHeadings; i++) {
   testThat(
     `h${i} should is parsed`,
-    test.getTree(`h${i} Heading ${i}`),
+    test.parseMarkUp(`h${i} Heading ${i}`),
     [
       `<h${i}>Heading ${i}</h${i}>`
     ]
