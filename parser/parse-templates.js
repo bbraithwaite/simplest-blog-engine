@@ -1,30 +1,29 @@
-const fs = require('fs')
 const metaData = require('../parser/meta-data')
 const parser = require('../parser/parser')
 const blogConfig = require('../generator/blog-config')
 
-function _getLatestArticles(allPostsMetaData) {
+function _getLatestArticles (allPostsMetaData) {
   if (!allPostsMetaData) return []
   return _createHtmlLinks(allPostsMetaData.slice(0, 3))
 }
 
-function _getPopularArticles(allPostsMetaData) {
+function _getPopularArticles (allPostsMetaData) {
   if (!allPostsMetaData) return []
   const popular = allPostsMetaData.filter((a) => { return a.popular })
   return _createHtmlLinks(popular)
 }
 
-function _createHtmlLinks(allPostsMetaData) {
-    const articleLinks = []
-    articleLinks.push('<ul>')
+function _createHtmlLinks (allPostsMetaData) {
+  const articleLinks = []
+  articleLinks.push('<ul>')
 
-    for (let i = 0; i < allPostsMetaData.length; i++) {
-      articleLinks.push(`\n<li><a href="${allPostsMetaData[i].url}">${allPostsMetaData[i].title}</a></li>`)
-    }
+  for (let i = 0; i < allPostsMetaData.length; i++) {
+    articleLinks.push(`\n<li><a href="${allPostsMetaData[i].url}">${allPostsMetaData[i].title}</a></li>`)
+  }
 
-    articleLinks.push('\n</ul>')
+  articleLinks.push('\n</ul>')
 
-    return articleLinks.join('')
+  return articleLinks.join('')
 }
 
 function parseBlogPage (globalSiteTemplate, post, blogTemplate) {
@@ -56,7 +55,7 @@ function parsePage (indexHtmlTemplate, indexContent, allPostsMetaData, publish) 
   parsedHtml = parsedHtml.replaceAll('{{newestArticles}}', _getLatestArticles(allPostsMetaData))
   parsedHtml = parsedHtml.replaceAll('{{popularArticles}}', _getPopularArticles(allPostsMetaData))
   parsedHtml = parsedHtml.replaceAll('{{url}}', blogConfig.getSiteUrl(publish))
-  
+
   return parsedHtml
 }
 

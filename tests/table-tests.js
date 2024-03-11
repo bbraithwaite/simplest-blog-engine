@@ -32,4 +32,3 @@ testThat(
     '<table>\n<tr>\n<th>This is a header cell.</th>\n</tr>\n<tr>\n<td>This is a cell on row 2.</td>\n</tr>\n</table>'
   ]
 )
-
