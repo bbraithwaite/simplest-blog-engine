@@ -1,4 +1,4 @@
-const test = require('./test')
+const test = require('./../test')
 const testThat = test.that
 
 testThat(

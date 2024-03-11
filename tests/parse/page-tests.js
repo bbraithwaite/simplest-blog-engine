@@ -1,5 +1,5 @@
-const pageParser = require('../parser/parse-page')
-const test = require('./test')
+const pageParser = require('./../../lib/parse/parse-page')
+const test = require('./../test')
 const testThat = test.that
 
 const pageUrl = 'http://localhost:3000'

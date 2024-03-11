@@ -1,4 +1,4 @@
-const parser = require('../parser/parser')
+const parser = require('../lib/parse/parser')
 const metaDataRaw = '---\ndate: 2022-05-23\ntitle: GET2 Test Results\ntags: thoughts\n---\n\n'
 
 function executeTest (description, fn, expected) {

@@ -1,6 +1,6 @@
-const test = require('./test')
+const test = require('./../test')
 const testThat = test.that
-const parser = require('../parser/parser')
+const parser = require('./../../lib/parse/parser')
 
 const metaDataRaw = '---\ndate: 2022-05-23\ntitle: The Simplest Blog\ntags: thoughts\n---\n\n'
 const metaDataParsed = {

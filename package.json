@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "npx eslint **/*.js",
     "test": "node tests/runner.js",
-    "build": "node generator/compile.js",
-    "blog": "node generator/compile.js && node server/index.js"
+    "build": "node lib/build/compile.js",
+    "blog": "node lib/build/compile.js && node server/index.js"
   },
   "repository": {
     "type": "git",
