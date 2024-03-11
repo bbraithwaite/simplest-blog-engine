@@ -16,6 +16,7 @@ const newLineEscape = /\\n/g // match on \n
 const orderedList = /^[0-9]+\.\s(.*)/g // match on 1. list item
 const unorderedList = /^-\s(.*)/g // match on - list item
 const table = /^tr\s(.*)/g
+const tableHeader = /^th\s(.*)/g
 
 // eslint-disable-next-line
 const anchor = /\[([^\|]*)\|([^\|]*)\|([^\|]*)\]/g // match on hyperlink [display text|url|title text]
@@ -46,6 +47,7 @@ module.exports = {
   image,
   imageDimensions,
   table,
+  tableHeader,
   underline,
   underlineEscape
 }

@@ -24,3 +24,12 @@ testThat(
     '<table>\n<tr>\n<td>This is a cell.</td>\n</tr>\n<tr>\n<td>This is a cell on row 2.</td>\n</tr>\n</table>'
   ]
 )
+
+testThat(
+  'table with a header row is parsed',
+  test.getTree('th This is a header cell.\ntr This is a cell on row 2.'),
+  [
+    '<table>\n<tr>\n<th>This is a header cell.</th>\n</tr>\n<tr>\n<td>This is a cell on row 2.</td>\n</tr>\n</table>'
+  ]
+)
+

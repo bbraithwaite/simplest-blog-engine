@@ -1,8 +1,8 @@
 const regex = require('./regex')
 
-function _parseTableRow (value) {
+function _parseTableRow (value, tag) {
   let initialValue = '<tr>\n'
-  initialValue = value.split('|').reduce((previousValue, currentValue) => previousValue + `<td>${currentValue.trim()}</td>`, initialValue)
+  initialValue = value.split('|').reduce((previousValue, currentValue) => previousValue + `<${tag}>${currentValue.trim()}</${tag}>`, initialValue)
   return initialValue + '\n</tr>'
 }
 
@@ -22,7 +22,9 @@ function _parseTag (input, re, tag, escapeChar) {
         ret = ret.replace(match[0], `<img src="${match[1]}" alt="${match[2]}">`)
       }
     } else if (tag === 'td') {
-      ret = ret.replace(match[0], _parseTableRow(match[1]))
+      ret = ret.replace(match[0], _parseTableRow(match[1], 'td'))
+    } else if (tag === 'th') {
+      ret = ret.replace(match[0], _parseTableRow(match[1], 'th'))
     } else if (escapeChar) {
       ret = ret.replace(match[0], `${tag}`)
     } else if (tag === 'u') {
@@ -42,7 +44,7 @@ function _parseTag (input, re, tag, escapeChar) {
 module.exports = (line, tree) => {
   if (line.trim().length === 0) return
 
-  const startsWithTag = /^(h[0-9]|>|---|-\s|[0-9]+\.\s|tr\s|<[a-z]|<\/[a-z])/
+  const startsWithTag = /^(h[0-9]|>|---|-\s|[0-9]+\.\s|tr\s|<[a-z]|<\/[a-z])|th\s/
 
   let ret = line
 
@@ -54,6 +56,7 @@ module.exports = (line, tree) => {
   ret = _parseTag(ret, regex.italicEscape, '&#8208;', true)
   ret = _parseTag(ret, regex.underlineEscape, '&#95;', true)
   ret = _parseTag(ret, regex.newLineEscape, '<br>', true)
+  ret = _parseTag(ret, regex.tableHeader, 'th')
   ret = _parseTag(ret, regex.table, 'td')
   ret = _parseTag(ret, regex.h1, 'h1')
   ret = _parseTag(ret, regex.h2, 'h2')

@@ -24,7 +24,7 @@ module.exports = (string) => {
       return ORDERED_LIST
     }
 
-    if (item && /^tr\s(.*)/.test(item)) {
+    if (item && /^tr\s(.*)|^th\s(.*)/.test(item)) {
       return TABLE
     }
 
