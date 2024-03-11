@@ -2,10 +2,10 @@ const test = require('./test')
 const testThat = test.that
 const parser = require('../parser/parser')
 
-const metaDataRaw = '---\ndate: 2022-05-23\ntitle: GET2 Test Results\ntags: thoughts\n---\n\n'
+const metaDataRaw = '---\ndate: 2022-05-23\ntitle: The Simplest Blog\ntags: thoughts\n---\n\n'
 const metaDataParsed = {
   date: '2022-05-23',
-  title: 'GET2 Test Results',
+  title: 'The Simplest Blog',
   tags: 'thoughts',
   unixDate: 1653264000,
   displayDate: '23 May 2022',

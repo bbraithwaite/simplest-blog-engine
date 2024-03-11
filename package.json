@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "npx eslint **/*.js",
-    "test": "node tests/runner.js"
+    "test": "node tests/runner.js",
+    "build": "node generator/compile.js",
+    "blog": "node generator/compile.js && node server/index.js"
   },
   "repository": {
     "type": "git",

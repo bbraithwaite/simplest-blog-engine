@@ -1,0 +1,23 @@
+---
+title: The Simplest Blog
+---
+
+<!-- You can add elements for the root homepage file here. -->
+<section>
+	<h2>What is this?</h2>
+	<p>
+		It's a simple way to write content and publish it to the internet. It's a bit like markdown, but my own flavour. It only uses <a href="https://nodejs.org/">node.js</a>. No 3rd party libraries. It generates static HTML files that you can host wherever you like. That's it!
+	</p>
+</section>
+
+<section>
+	<h2>Newest Articles</h2>
+	{{newestPosts}}
+	<a href="{{url}}/blog" title="A list of all articles">All Articles</a>
+</section>
+
+<section>
+	<h2>Popular Articles</h2>
+	{{popularPosts}}
+	<a href="{{url}}/blog" title="A list of all articles">All Articles</a>
+</section>
