@@ -1,5 +1,6 @@
 const fs = require('fs')
-const files = fs.readdirSync(`${__dirname}/parse`, 'utf8')
+const path = require('path')
+const files = fs.readdirSync(path.join(__dirname, '/parse'), 'utf8')
 const matchedFiles = /(.*-tests).js/
 
 // excecutes files in the /tests/ folder that as suffixed with '-tests.js'
