@@ -1,4 +1,4 @@
-const parser = require('../lib/parse/parser')
+const parser = require('../lib/parse/content')
 const metaDataRaw = '---\ndate: 2022-05-23\ntitle: Simplest Blog\n---\n\n'
 
 /**
@@ -7,7 +7,7 @@ const metaDataRaw = '---\ndate: 2022-05-23\ntitle: Simplest Blog\n---\n\n'
  * @returns {array} An array of the parsed lines from sb markup to HTML.
  */
 const parseMarkUp = (input) => {
-  return () => { return parser(`${metaDataRaw}${input}`).tree }
+  return () => { return parser(`${metaDataRaw}${input}`).content }
 }
 
 /**

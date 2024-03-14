@@ -8,7 +8,7 @@ testThat(
     '<p>Here is a list:</p>',
     '<ul>\n<li>one thing</li>\n<li>two</li>\n<li>three</li>\n</ul>',
     '<p>The end.</p>'
-  ]
+  ].join('')
 )
 
 testThat(
@@ -17,7 +17,7 @@ testThat(
   [
     '<p>Here is a list:</p>',
     '<ul>\n<li>one thing</li>\n<li>two</li>\n<li>three</li>\n</ul>'
-  ]
+  ].join('')
 )
 
 testThat(
@@ -26,7 +26,7 @@ testThat(
   [
     '<p>Here is a list:</p>',
     '<ol>\n<li>one thing</li>\n<li>two</li>\n<li>three</li>\n<li>ten</li>\n</ol>'
-  ]
+  ].join('')
 )
 
 testThat(
@@ -36,5 +36,5 @@ testThat(
     '<p>Here is a list:</p>',
     '<ol>\n<li>one thing</li>\n<li>two</li>\n<li>three</li>\n</ol>',
     '<p>The end.</p>'
-  ]
+  ].join('')
 )

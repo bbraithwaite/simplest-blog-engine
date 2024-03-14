@@ -2,5 +2,18 @@
 	"devUrl" : "http://localhost:3000",
 	"devPort": 3000,
 	"publishedUrl" : "http://blog.simplest.club",
-	"publishedPort" : 80
+	"localOutput": "_output",
+	"publishedOutput": "_published",
+	"staticPages": [
+		"index.html",
+  		"404.html",
+  		"about.html",
+  		"blog/index.html"
+	],
+	"filesToCopy": [
+		"style.css"
+	],
+	"foldersToCopy": [
+		"images"
+	]
 }

@@ -1,23 +1,21 @@
 const test = require('./../test')
 const testThat = test.that
-const parser = require('./../../lib/parse/parser')
+const metaData = require('./../../lib/parse/meta-data')
 
-const metaDataRaw = '---\ndate: 2022-05-23\ntitle: The Simplest Blog\ntags: thoughts\n---\n\n'
-const metaDataParsed = {
-  date: '2022-05-23',
-  title: 'The Simplest Blog',
-  tags: 'thoughts',
-  unixDate: 1653264000,
-  displayDate: '23 May 2022',
-  content: 'This is some more text.',
-  contentStart: 5
-}
+const metaDataRaw = '---\ndate: 2022-05-23\ntitle: The Simplest Blog\nslug: this-page\n---\n\n'
 
 testThat(
   'meta data is parsed',
-  () => { return parser(`${metaDataRaw}This is some more text.`) },
+  () => { return metaData(`${metaDataRaw}This is some more text.`, 'http://localhost') },
   {
-    meta: metaDataParsed,
-    tree: ['<p>This is some more text.</p>']
+    date: "2022-05-23",
+    title: "The Simplest Blog",
+    slug: "this-page",
+    unixDate: 1653264000,
+    displayDate: "23 May 2022",
+    content: "This is some more text.",
+    contentStart: 5,
+    url: "http://localhost/this-page.html",
+    fileName: "this-page.html"
   }
 )

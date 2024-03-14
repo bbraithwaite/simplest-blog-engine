@@ -7,8 +7,6 @@ for (let i = 1; i <= maxHeadings; i++) {
   testThat(
     `h${i} should is parsed`,
     test.parseMarkUp(`h${i} Heading ${i}`),
-    [
-      `<h${i}>Heading ${i}</h${i}>`
-    ]
+    `<h${i}>Heading ${i}</h${i}>`
   )
 }
