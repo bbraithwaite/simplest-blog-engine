@@ -1,6 +1,6 @@
 {
   "name": "simplest-blog-engine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Core engine for Simplest Blog.",
   "main": "index.js",
   "scripts": {
