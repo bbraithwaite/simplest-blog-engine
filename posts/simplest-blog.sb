@@ -1,0 +1,26 @@
+---
+date: 2024-01-02
+title: Introducing Simplest Blog
+popular: 1
+slug: blog/simplest-blog
+---
+
+The last time I published a new post to one of my blogs, the entire site layout was broken due to my custom templates no longer being compatible with the latest version of the software used by the platform in question. This was caused by breaking changes introduced by more than one of the 3rd party libraries being used by this platform. I then had to spend time I didn't have trying to fix the various issues in production. Before I was able to debug and fix the breakage, I had to update a bunch of libraries in my local environment to get parity with the hosting platform. It's not the first time that this happened to me. This is why I created this. A minimal blog generator that will stop that from happening to me again.
+
+This blogging engine was created with the following principles in mind:
+
+- No reliance on 3rd party software libraries and/or plug-ins that need to be synchronised between author's computer and publishing platform.
+- Being able to write in a simple as possible text format (limited use of keystrokes for formatting, little to no HTML).
+- Focus on writing, and making the framework get out of the way.
+- Minimal configuration
+- Publishing content as static files only i.e. HTML and no server-side rendering.
+- Works on any platform.
+- You own the content.
+- Allow the use of HTML when desired.
+- Uses JavaScript-only for publishing i.e. can run anywhere.
+Can run locally or be easily published to the internet.
+Has an optional built in server for running locally or in production.
+
+To create posts, I created my own [markup language|/blog/example.html|how to create a post], that is a bit like Markdown but catered to my own preferences. I like to [write plain text files|https://sive.rs/plaintext|write plain text files] where possible.
+
+If you have a basic understanding of HTML and can learn a few markup conventions, then this might be useful to you!

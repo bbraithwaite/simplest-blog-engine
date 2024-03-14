@@ -100,7 +100,7 @@ h2 Adding Emphasis
 
 You can **bold words** by wrapping the word(s) like this: \*\*bolded word\*\*.
 
-You can add --emphasis-- by wrapping the word(s) like this: \-\-emphasised word\-\-, or **--both--**!
+You can add ~~emphasis~~ by wrapping the word(s) like this: &#126;&#126;emphasised word&#126;&#126;, or **~~both~~**!
 
 Even when adding **bold tags, you can escape\* bold tags**.
 
