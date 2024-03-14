@@ -1,0 +1,135 @@
+---
+date: 2024-01-01
+title: How to Write a Post
+popular: 1
+slug: blog/example-post
+---
+
+To write a simple paragraph, you just write one... like this!
+
+To start new paragraph you just hit return twice and start a new line.
+
+---
+
+h2 Adding Line-Breaks
+
+If you would like, you can just type --- on its own line, and it will draw a line under the paragraph.
+
+---
+
+h2 Adding Sub-Headings
+
+You can add headings by starting a new line with the text: "**h1** my heading text".
+
+You can prefix with **h1**, or **h2** up to **h6**. Once parsed they look like this
+
+h1 Heading 1
+
+h2 Heading 2
+
+h3 Heading 3
+
+h4 Heading 4
+
+h5 Heading 5
+
+h6 Heading 6
+
+---
+
+h2 Quotations
+
+By starting a paragraph with "> Then some text..." it translates to:
+
+> Then some text...
+
+---
+
+h2 Adding Hyperlinks
+
+Hyperlinks are added like this: &#91;link text|link url|link title&#93;.
+
+For example: &#91;example.com|https://example.com/|click to go to example.com&#93; would become [example.com|https://example.com/|click to go to example.com].
+
+---
+
+h2 Adding Images
+
+Images are added like this:
+
+- &#123;image source|img alt text&#125;
+- &#123;image source|img alt text|width|height&#125;
+
+{{{siteUrl}}/images/example-1.jpg|example of images}
+
+{{{siteUrl}}/images/example-1.jpg|example of images|200|100}
+
+---
+
+h2 Adding Lists
+
+**Bulleted Lists:**
+
+<pre>
+&#45; first item
+&#45; second item
+&#45; third item
+</pre>
+
+Becomes:
+
+- first item
+- second item
+- third item
+
+**Numbered Lists:**
+
+<pre>
+1&#46; first item
+2&#46; second item
+3&#46; third item
+</pre>
+
+1. first item
+2. second item
+3. third item
+
+---
+
+h2 Adding Emphasis 
+
+You can **bold words** by wrapping the word(s) like this: \*\*bolded word\*\*.
+
+You can add --emphasis-- by wrapping the word(s) like this: \-\-emphasised word\-\-, or **--both--**!
+
+Even when adding **bold tags, you can escape\* bold tags**.
+
+Same when adding --italic tags, you can escape\- italic tags--.
+
+We can __underline__ using this syntax \_\_underline\_\_.
+
+---
+
+h2 Adding Tables
+
+<pre>
+<p><b>&#116;&#114;</b> You can add a table | with cells | separated like this</p>
+<p><b>&#116;&#114;</b> You can add another row | with cells | separated like this</p>
+</pre>
+
+This generates:
+
+tr You can add a table | with cells | separated like this
+tr You can add another row | with cells | separated like this
+
+If you wish to include headers, you can type:
+
+<pre>
+<p><b>&#116;&#104;</b> Header 1 | Header 2 | Header 3</p>
+<p><b>&#116;&#114;</b> You can add a table | with cells | separated like this</p>
+<p><b>&#116;&#114;</b> You can add another row | with cells | separated like this</p>
+</pre>
+
+th Header 1 | Header 2 | Header 3
+tr You can add a table | with cells | separated like this
+tr You can add another row | with cells | separated like this

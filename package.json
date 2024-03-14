@@ -6,9 +6,10 @@
   "scripts": {
     "lint": "npx eslint **/*.js",
     "test": "node tests/runner.js",
-    "build": "node lib/build/generate-site.js",
+    "build": "node lib/build/index.js",
+    "publish": "node lib/build/index.js publish",
     "edit": "node lib/watch-css.js",
-    "blog": "node lib/build/compile.js && node server/index.js"
+    "blog": "node lib/build/index.js && node server/index.js"
   },
   "repository": {
     "type": "git",

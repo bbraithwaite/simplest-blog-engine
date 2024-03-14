@@ -1,12 +1,29 @@
----
-title: {{title}} | The Simplest Blog
----
-
-<article>
-	<header>
-		<div class="breadcrumb"><a href="{{url}}/blog">All Articles</a>:</div>
-		<h1>{{title}}</h1>
-		<small>{{date}}</small>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{title}} | The Simplest Blog</title>
+	<link rel="stylesheet" type="text/css" href="{{siteUrl}}/style.css">
+</head>
+<body>
+	<header class="global-header">
+		<a href="{{siteUrl}}" title="The Simplest Blog">The Simplest Blog</a>
+		<p>A simple way to get your writing ready for the internet.</p>
 	</header>
-	{{content}}
-</article>
+	<main>
+		<article>
+			<header>
+				<div class="breadcrumb"><a href="{{siteUrl}}/blog">All Articles</a>:</div>
+				<h1>{{title}}</h1>
+				<small>{{date}}</small>
+			</header>
+			{{content}}
+		</article>
+	</main>
+	<footer>
+		<div><a href="{{siteUrl}}">Home</a> | <a href="{{siteUrl}}/blog">All Articles</a> | <a href="{{siteUrl}}/about.html">About</a></div>
+		<p>&copy; 2024 The Simplest Blog</p>
+	</footer>
+</body>
+</html>
