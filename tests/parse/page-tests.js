@@ -5,9 +5,7 @@ const meta = require('./../../lib/parse/meta-data')
 const pageParser = require('./../../lib/parse/static-page')
 
 const pageUrl = 'http://localhost:3000'
-const metaData = {
-  title: 'The Simplest Blog'
-}
+
 const blogPosts = [{
   title: 'Fourth Post',
   popular: true,
@@ -52,26 +50,26 @@ testThat(
   getExpectedTemplate('<p>Page Content</p>')
 )
 
-// testThat(
-//   'parsing page replaces {{url}} tag',
-//   () => { return pageParser(appendContent('<p>Page Content. Replace this {{url}}.</p>'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
-//   getExpectedTemplate('<p>Page Content. Replace this http://localhost:3000.</p>')
-// )
+testThat(
+  'parsing page replaces {{siteUrl}} tag',
+  () => { return pageParser(appendContent('<p>Page Content. Replace this {{siteUrl}}.</p>'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
+  getExpectedTemplate('<p>Page Content. Replace this http://localhost:3000.</p>')
+)
 
-// testThat(
-//   'parsing page replaces {{newestPosts}} tag',
-//   () => { return pageParser(appendContent('{{newestPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
-//   getExpectedTemplate(`<ul>${getListHtml(blogPosts.slice(0, 3))}</ul>`)
-// )
+testThat(
+  'parsing page replaces {{newestPosts}} tag',
+  () => { return pageParser(appendContent('{{newestPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
+  getExpectedTemplate(`<ul>${getListHtml(blogPosts.slice(0, 3))}</ul>`)
+)
 
-// testThat(
-//   'parsing page replaces {{popularPosts}} tag',
-//   () => { return pageParser(appendContent('{{popularPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
-//   getExpectedTemplate(`<ul>${getListHtml([blogPosts[0]])}</ul>`)
-// )
+testThat(
+  'parsing page replaces {{popularPosts}} tag',
+  () => { return pageParser(appendContent('{{popularPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
+  getExpectedTemplate(`<ul>${getListHtml([blogPosts[0]])}</ul>`)
+)
 
-// testThat(
-//   'parsing page replaces {{allPosts}} tag',
-//   () => { return pageParser(appendContent('{{allPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
-//   getExpectedTemplate(`<ul>${getListHtml(blogPosts)}</ul>`)
-// )
+testThat(
+  'parsing page replaces {{allPosts}} tag',
+  () => { return pageParser(appendContent('{{allPosts}}'), blogPosts, getTestTemplate('{{content}}'), pageUrl) },
+  getExpectedTemplate(`<ul>${getListHtml(blogPosts)}</ul>`)
+)

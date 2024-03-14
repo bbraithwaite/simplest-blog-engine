@@ -4,7 +4,7 @@
   "description": "Core engine for Simplest Blog.",
   "main": "index.js",
   "scripts": {
-    "lint": "npx eslint **/*.js",
+    "lint": "npx eslint lib/** && npx eslint tests/** && npx eslint server/**",
     "test": "node tests/runner.js",
     "build": "node lib/build/index.js",
     "publish": "node lib/build/index.js publish",

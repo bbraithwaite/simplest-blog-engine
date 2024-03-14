@@ -8,14 +8,14 @@ testThat(
   'meta data is parsed',
   () => { return metaData(`${metaDataRaw}This is some more text.`, 'http://localhost') },
   {
-    date: "2022-05-23",
-    title: "The Simplest Blog",
-    slug: "this-page",
+    date: '2022-05-23',
+    title: 'The Simplest Blog',
+    slug: 'this-page',
     unixDate: 1653264000,
-    displayDate: "23 May 2022",
-    content: "This is some more text.",
+    displayDate: '23 May 2022',
+    content: 'This is some more text.',
     contentStart: 5,
-    url: "http://localhost/this-page.html",
-    fileName: "this-page.html"
+    url: 'http://localhost/this-page.html',
+    fileName: 'this-page.html'
   }
 )
